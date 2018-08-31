@@ -28,7 +28,8 @@ def loadDataSet(filename):
                 str_f = featrue.strip()
                 if str_f.isdigit():   # 判断是否是数字
                     # 将数据集的第column列转换成float形式
-                    lineArr.append(float(str_f))
+                    # lineArr.append(float(str_f)) 因为数据中1的问题会导致错误 故将float删除
+                    lineArr.append((str_f))
                 else:
                     # 添加分类标签
                     lineArr.append(str_f)
@@ -302,8 +303,8 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 if __name__ == '__main__':
 
     # 加载数据
-    dataset = loadDataSet('input/7.RandomForest/sonar-all-data.txt')
-    # print dataset
+    dataset = loadDataSet('../../../../input/7.RandomForest/sonar-all-data.txt')
+    # print(dataset)   #dataset[179][29]=1
 
     n_folds = 5        # 分成5份数据，进行交叉验证
     max_depth = 20     # 调参（自己修改） #决策树深度不能太深，不然容易导致过拟合
@@ -315,7 +316,7 @@ if __name__ == '__main__':
         scores = evaluate_algorithm(dataset, random_forest, n_folds, max_depth, min_size, sample_size, n_trees, n_features)
         # 每一次执行本文件时都能产生同一个随机数
         seed(1)
-        print 'random=', random()
-        print 'Trees: %d' % n_trees
-        print 'Scores: %s' % scores
-        print 'Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores)))
+        print('random=', random())
+        print('Trees: %d' % n_trees)
+        print('Scores: %s' % scores)
+        print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))

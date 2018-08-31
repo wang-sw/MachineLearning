@@ -58,7 +58,7 @@ plt.show()
 # License: BSD 3 clause
 
 '''
-from __future__ import division
+#from __future__ import division
 import time
 
 import numpy as np
@@ -183,7 +183,7 @@ plt.plot(train_sizes, -test_scores_svr.mean(1), 'o-', color="r",
 plt.plot(train_sizes, -test_scores_kr.mean(1), 'o-', color="g",
          label="KRR")
 plt.xlabel("Train size")
-plt.ylabel("Mean Squared Error")
+plt.ylabel("Meaquared Error")
 plt.title('Learning curves')
 plt.legend(loc="best")
 
